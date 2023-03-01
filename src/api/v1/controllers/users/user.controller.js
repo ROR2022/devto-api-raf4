@@ -5,7 +5,7 @@ export class UserController {
     try {
       const users = await User.find()
   
-     res.status(200).send(users)
+      res.status(200).json(users)
     } catch(error) {
       console.error(error)
     }
@@ -23,7 +23,7 @@ export class UserController {
         })
       }
   
-      res.status(200).send(user)
+      res.status(200).json(user)
     } catch(error) {
       console.log(error)
     }
@@ -44,7 +44,7 @@ export class UserController {
       // salvamos en nuestra base de datos
       await newUser.save()
       // enviamos la respuesta al cliente
-      res.status(201).send(newUser)
+      res.status(201).json(newUser)
   
     } catch(error) {
       console.error(error)
@@ -59,7 +59,7 @@ export class UserController {
   
       const updatedUser = await User.findByIdAndUpdate(id, bodyParams, { new: true })
   
-      res.status(201).send(updatedUser)
+      res.status(201).json(updatedUser)
     } catch(error) {
       console.log(error)
     }
