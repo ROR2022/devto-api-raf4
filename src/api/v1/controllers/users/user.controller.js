@@ -1,4 +1,4 @@
-// import UserService from '../../'
+ import User from "../../models/user"
 
 export class UserController {
   getAllUsers = async (req, res)=> {
