@@ -9,7 +9,7 @@ export class UserController {
     // } catch(error) {
     //   console.error(error)
     // }
-    response.json({ message: 'Get All Users OK' })
+    res.json({ message: 'Get All Users OK' })
   }
 
   getUser= async (req, res)=> {
