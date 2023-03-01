@@ -3,9 +3,9 @@
 export class UserController {
   getAllUsers = async (req, res)=> {
     try {
-      const users = await User.find({})
+      const users = await User.find()
   
-      return res.status(200).send(users)
+     res.status(200).send(users)
     } catch(error) {
       console.error(error)
     }
@@ -23,7 +23,7 @@ export class UserController {
         })
       }
   
-      return res.status(200).send(user)
+      res.status(200).send(user)
     } catch(error) {
       console.log(error)
     }
@@ -44,7 +44,7 @@ export class UserController {
       // salvamos en nuestra base de datos
       await newUser.save()
       // enviamos la respuesta al cliente
-      return res.status(201).send(newUser)
+      res.status(201).send(newUser)
   
     } catch(error) {
       console.error(error)
@@ -59,7 +59,7 @@ export class UserController {
   
       const updatedUser = await User.findByIdAndUpdate(id, bodyParams, { new: true })
   
-      return res.status(201).send(updatedUser)
+      res.status(201).send(updatedUser)
     } catch(error) {
       console.log(error)
     }
@@ -72,12 +72,12 @@ export class UserController {
       const deletedUser = await User.findByIdAndDelete(id)
       
       if (!deletedUser) {
-        return res.status(404).send({ 
+        res.status(404).send({ 
           error: 'No se encontro ningún registro en la base de datos'
         })
       }
       
-      return res.status(200).send({ message: 'Registro eliminado correctamente'});
+      res.status(200).send({ message: 'Registro eliminado correctamente'});
     } catch (error) {
       console.log(error)
     }
