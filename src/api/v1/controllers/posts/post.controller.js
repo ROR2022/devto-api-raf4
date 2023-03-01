@@ -22,8 +22,24 @@ export class PostController {
 
   getPost = async (req, res)=>{
 
+    const {id} = req.params;
+  try {
+    const dataPost = await Post.findOne({_id:id});
+
+    //if (dataPost.titlePost) showDataPost(dataPost);
+
+    const objRes= {
+      msg: 'Retrieve Post By ID:..',
+      dataPost,
+      id
+    }
+    return res.json(objRes);
+  } catch (error) {
+    console.log(error);
+    return res.json(error);
+  }
     
-    return res.json({ message: 'Get Post OK' })
+    //return res.json({ message: 'Get Post OK' })
   }
 
   createPost = async(req, res)=>{
