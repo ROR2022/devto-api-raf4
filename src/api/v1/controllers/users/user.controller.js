@@ -5,7 +5,7 @@ export class UserController {
     try {
       const users = await User.find({})
   
-      res.status(200).send(users)
+      return res.status(200).send(users)
     } catch(error) {
       console.error(error)
     }
@@ -23,7 +23,7 @@ export class UserController {
         })
       }
   
-      res.status(200).send(user)
+      return res.status(200).send(user)
     } catch(error) {
       console.log(error)
     }
@@ -44,7 +44,7 @@ export class UserController {
       // salvamos en nuestra base de datos
       await newUser.save()
       // enviamos la respuesta al cliente
-      res.status(201).send(newUser)
+      return res.status(201).send(newUser)
   
     } catch(error) {
       console.error(error)
@@ -59,7 +59,7 @@ export class UserController {
   
       const updatedUser = await User.findByIdAndUpdate(id, bodyParams, { new: true })
   
-      res.status(201).send(updatedUser)
+      return res.status(201).send(updatedUser)
     } catch(error) {
       console.log(error)
     }
@@ -72,12 +72,12 @@ export class UserController {
       const deletedUser = await User.findByIdAndDelete(id)
       
       if (!deletedUser) {
-        res.status(404).send({ 
+        return res.status(404).send({ 
           error: 'No se encontro ningún registro en la base de datos'
         })
       }
       
-      res.status(200).send({ message: 'Registro eliminado correctamente'});
+      return res.status(200).send({ message: 'Registro eliminado correctamente'});
     } catch (error) {
       console.log(error)
     }
