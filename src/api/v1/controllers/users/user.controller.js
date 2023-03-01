@@ -2,14 +2,14 @@
 
 export class UserController {
   getAllUsers = async (req, res)=> {
-    try {
-      const users = await User.find()
+    // try {
+    //   const users = await User.find()
   
-      res.status(200).json(users)
-    } catch(error) {
-      console.error(error)
-    }
-    // response.json({ message: 'Get All Users OK' })
+    //   res.status(200).json(users)
+    // } catch(error) {
+    //   console.error(error)
+    // }
+    response.json({ message: 'Get All Users OK' })
   }
 
   getUser= async (req, res)=> {
