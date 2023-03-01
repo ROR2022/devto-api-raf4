@@ -1,14 +1,34 @@
+import Post from "../models/post.model.js";
+
 export class PostController {
   getAllPosts(request, response) {
     response.json({ message: 'Get All Posts OK' })
   }
 
-  getPost(request, response) {
-    response.json({ message: 'Get Post OK' })
+  getPost = async (req, res)=>{
+
+    
+    return res.json({ message: 'Get Post OK' })
   }
 
-  createPost(request, response) {
-    response.json({ message: 'Create Post OK' })
+  createPost = async(req, res)=>{
+    const dataPost = req.body;
+  try {
+    const newPost = new Post(dataPost);
+    await newPost.save();
+
+    const objRes= {
+      msg: 'Creando un post:..',
+      dataPost,
+      newPost
+    }
+    //console.log(objRes);
+    return res.json(objRes);
+  } catch (error) {
+    console.log(error);
+    return res.json(error);
+  }
+    //response.json({ message: 'Create Post OK' })
   }
 
   updatePost(request, response) {
