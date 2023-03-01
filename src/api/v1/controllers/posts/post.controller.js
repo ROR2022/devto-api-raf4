@@ -1,8 +1,23 @@
 import Post from "../../models/post.model";
 
 export class PostController {
-  getAllPosts(request, response) {
-    response.json({ message: 'Get All Posts OK' })
+  getAllPosts = async (req, res)=> {
+
+    try {
+    
+      const lastPost = await Post.find().limit(4).sort({$natural:-1});
+  
+      const objRes= {
+        msg: 'Retrieve Last Post:..',
+        lastPost
+      }
+      return res.json(objRes);
+    } catch (error) {
+      console.log(error);
+      return res.json(error);
+    }
+  
+    //response.json({ message: 'Get All Posts OK' })
   }
 
   getPost = async (req, res)=>{
