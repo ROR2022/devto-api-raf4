@@ -6,5 +6,5 @@ export default express
   .get('/', PostController.getAllPosts)
   .post('/', PostController.createPost)
   .get('/:id', PostController.getPost)
-  .patch('/:id', PostController.updatePost)
+  .put('/:id', PostController.updatePost)
   .delete('/:id', PostController.deletePost)
