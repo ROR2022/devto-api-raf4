@@ -65,7 +65,7 @@ export class PostController {
   updatePost = async (req, res)=> {
     const {id, urlImage, textPost, titlePost} = req.body;
     try {
-      const editPost = await Post.findOneAndUpdate({_id:id},{urlImage:urlImage,textPost:textPost,titlePost:titlePost},{new: true});
+      const editPost = await Post.findByIdAndUpdate({_id:id},{urlImage:urlImage,textPost:textPost,titlePost:titlePost},{new: true});
       const objRes = {
         editPost,
         msg: "Post Actualizado con Exito"
@@ -77,8 +77,19 @@ export class PostController {
     //response.json({ message: 'Update Post OK' })
   }
 
-  deletePost(request, response) {
-    response.json({ message: 'Delete Post OK' })
+  deletePost = async (req, res)=>{
+    const {id} = req.params;
+    try {
+      const deletePost = await Post.findByIdAndDelete({_id:id});
+      const objRes = {
+        deletePost,
+        msg: "Post Eliminado con Exito"
+      }
+      return res.status(200).json(objRes)
+    } catch (error) {
+      return res.status(500).json(error)
+    }
+    //response.json({ message: 'Delete Post OK' })
   }
 }
 
