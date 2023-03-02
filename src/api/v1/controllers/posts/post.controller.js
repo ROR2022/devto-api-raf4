@@ -5,7 +5,7 @@ export class PostController {
 
     try {
     
-      const lastPost = await Post.find().limit(4).sort({$natural:-1});
+      const lastPost = await Post.find();
   
       const objRes= {
         msg: 'Retrieve Last Post:..',
