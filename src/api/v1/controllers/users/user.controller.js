@@ -30,6 +30,25 @@ export class UserController {
     // response.json({ message: 'Get User OK' })
   }
 
+  loginUser= async (req,res)=>{
+    const {email,password} = req.body;
+    try {
+      const findUser = await User.findOne({email:email});
+      if (findUser && (findUser.password===password)){
+        return res.status(200).json({
+          msg: 'Usuario Logeado con Exito',
+          findUser
+        })
+      }else{
+        return res.satus(403).json({
+          msg: 'Usuario o password incorrecto...'
+        })
+      }
+    } catch (error) {
+      return res.status(500).json(error);
+    }
+  }
+
   createUser= async (req, res)=> {
     try {
       // obtenemos los datos de la solicitud
