@@ -1,43 +1,27 @@
 import mongoose from 'mongoose'
 
 const userSchema = new mongoose.Schema({
+  avatarUrl: {
+    type: String
+  },
   name: {
-    type: String,
+    type: String
   },
   email: {
-    type: String,
-    required: true,
-    unique: true
+    type: String
   },
   password: {
-    type: String,
-    required: true,
-    minLength: 8
-  },
-  role: {
-    type: String,
-    enum: {
-      values: ['admin', 'staff'],
-      message: 'This {VALUE} option is not supported'
-    },
-    required: true
+    type: String
   },
   posts: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Post'
     }
-  ],
-  comments: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Comment'
-    }
   ]
 }, { 
-  timestamps: true 
+  timestamps: true
 })
 
-const User = mongoose.model('User', userSchema)
+export default mongoose.model('User', userSchema)
 
-export default User

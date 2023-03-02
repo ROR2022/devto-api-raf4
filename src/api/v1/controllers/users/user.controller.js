@@ -1,4 +1,4 @@
- import User from "../../models/user"
+ import User from "../../models/user.model"
 
 export class UserController {
   getAllUsers = async (req, res)=> {
@@ -44,10 +44,11 @@ export class UserController {
       // salvamos en nuestra base de datos
       await newUser.save()
       // enviamos la respuesta al cliente
-      res.status(201).json(newUser)
+      return res.status(201).json(newUser)
   
     } catch(error) {
       console.error(error)
+      return res.status(500).json(error)
     }
     // response.json({ message: 'Create User OK' })
   }
