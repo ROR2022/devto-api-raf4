@@ -18,14 +18,15 @@ export class UserController {
       const user = await User.findById(id)
   
       if (!user) {
-        res.status(404).send({ 
+        return res.status(404).json({ 
           error: 'No se encontro ningún registro en la base de datos'
         })
       }
   
-      res.status(200).json(user)
+      return res.status(200).json(user)
     } catch(error) {
       console.log(error)
+      return res.status(500).json(error)
     }
     // response.json({ message: 'Get User OK' })
   }
